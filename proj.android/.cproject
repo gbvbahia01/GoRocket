@@ -29,15 +29,15 @@
 							</tool>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.991472034" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1413805376" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/projects/GoRocket/proj.android/jni"/>
 									<listOptionValue builtIn="false" value="/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/cocos2dx"/>
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/system/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
 									<listOptionValue builtIn="false" value="/platforms/android-8/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/projects/GoRocket/proj.android/jni"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/cocos2dx"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/cocos2dx/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COCOS2DX_ROOT=${ProjDirPath}/../../../"/>
@@ -46,15 +46,15 @@
 							</tool>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.2035290044" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.898748423" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/projects/GoRocket/proj.android/jni"/>
 									<listOptionValue builtIn="false" value="/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/cocos2dx"/>
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/system/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
 									<listOptionValue builtIn="false" value="/platforms/android-8/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/projects/GoRocket/proj.android/jni"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/cocos2dx"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/cocos2dx/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COCOS2DX_ROOT=${ProjDirPath}/../../../"/>
@@ -63,15 +63,15 @@
 							</tool>
 							<tool errorParsers="org.eclipse.cdt.core.VCErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GASErrorParser;org.eclipse.cdt.core.GLDErrorParser" id="org.eclipse.cdt.build.core.settings.holder.731367497" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder">
 								<option id="org.eclipse.cdt.build.core.settings.holder.incpaths.1548475709" name="Include Paths" superClass="org.eclipse.cdt.build.core.settings.holder.incpaths" valueType="includePath">
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/projects/GoRocket/proj.android/jni"/>
 									<listOptionValue builtIn="false" value="/toolchains/arm-linux-androideabi-4.4.3/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.4.3/include"/>
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/cocos2dx"/>
-									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.2/cocos2dx/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/system/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/include"/>
 									<listOptionValue builtIn="false" value="/platforms/android-8/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/sources/cxx-stl/stlport/stlport"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/projects/GoRocket/proj.android/jni"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/cocos2dx"/>
+									<listOptionValue builtIn="false" value="/Users/guilhermebraga/Desenvolvimento/cocos2d/cocos2d-x-2.2.3/cocos2dx/include"/>
 								</option>
 								<option id="org.eclipse.cdt.build.core.settings.holder.symbols.1267721019" name="Symbols" superClass="org.eclipse.cdt.build.core.settings.holder.symbols" valueType="definedSymbols">
 									<listOptionValue builtIn="false" value="COCOS2DX_ROOT=${ProjDirPath}/../../../"/>
@@ -80,17 +80,17 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="0.756827735.1315823528" name="/" resourcePath="cocos2dx">
-						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.776663338" name="No ToolChain" superClass="org.eclipse.cdt.build.core.prefbase.toolchain" unusedChildren="">
-							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1166522631" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs.1844369373"/>
-							<tool id="org.eclipse.cdt.build.core.settings.holder.1858992437" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder.991472034">
-								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1565274990" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+					<folderInfo id="0.756827735.642944678" name="/" resourcePath="Classes">
+						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1428052936" name="No ToolChain" superClass="org.eclipse.cdt.build.core.prefbase.toolchain" unusedChildren="">
+							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1111733792" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs.1844369373"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.1473181442" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder.991472034">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1496882939" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
-							<tool id="org.eclipse.cdt.build.core.settings.holder.829171827" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder.2035290044">
-								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1188638712" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.655741073" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder.2035290044">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.2107211733" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
-							<tool id="org.eclipse.cdt.build.core.settings.holder.1057543362" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder.731367497">
-								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.279993663" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
+							<tool id="org.eclipse.cdt.build.core.settings.holder.2097909432" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder.731367497">
+								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.796915528" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
 							</tool>
 						</toolChain>
 					</folderInfo>
