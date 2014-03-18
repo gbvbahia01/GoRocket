@@ -1,5 +1,5 @@
 APPNAME="GoRocket"
-NDK_ROOT="/Users/guilhermebraga/Desenvolvimento/Android/adt-bundle-mac-x86_64-20130917/ndk/android-ndk-r8e"
+
 # options
 
 buildexternalsfromsource=
