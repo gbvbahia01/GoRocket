@@ -8,7 +8,8 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/node/sprite/contract/GameSprite.cpp \
+                   ../../Classes/node/sprite/contract/SpriteContract.cpp \
+                   ../../Classes/node/layers/manager/GameManager.cpp \
                    ../../Classes/node/layers/contract/LayerContract.cpp \
                    ../../Classes/node/layers/GameLayer.cpp
 

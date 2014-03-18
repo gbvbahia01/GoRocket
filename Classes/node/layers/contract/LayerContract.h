@@ -17,6 +17,7 @@ public:
 	virtual ~LayerContract();
 	CC_SYNTHESIZE(cocos2d::CCSpriteBatchNode *, _gameBatchNode, GameBatchNode);
 	CC_SYNTHESIZE(cocos2d::CCSize, _screenSize, ScreenSize);
+	virtual void statusChange(int newStatus);
 
 protected:
 	virtual void initLayer();

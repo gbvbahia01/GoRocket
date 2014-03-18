@@ -19,3 +19,8 @@ void LayerContract::initLayer() {
 	//Sobrescreva nas Layers
 	//Override on Layers
 }
+
+void LayerContract::statusChange(int newStatus) {
+	//Sobrescreva nas Layers
+	//Override on Layers
+}
