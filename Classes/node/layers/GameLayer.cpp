@@ -63,7 +63,9 @@ void GameLayer::initLayer() {
 	_labelAltitude->retain();
 	this->addChild(_labelAltitude);
 
-	_labelRecord = CCLabelTTF::create("0", "Times New Roman", 20);
+	char szName[100] = { 0 };
+	sprintf(szName, "Rec: %i", RecordsManager::getPoints());
+	_labelRecord = CCLabelTTF::create(szName, "Times New Roman", 20);
 	_labelRecord->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.05f));
 	_labelRecord->retain();
 	this->addChild(_labelRecord);
@@ -84,20 +86,20 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
 void GameLayer::update(float dt) {
 	_gameManager->update(dt);
 	char szName[100] = { 0 };
-	sprintf(szName, "Alt: %i", ((int)_gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
+	sprintf(szName, "Alt: %i", ((int) _gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
 	_labelAltitude->setString(szName);
-
-	sprintf(szName, "Rec: %i", RecordsManager::getPoints());
-	_labelRecord->setString(szName);
 }
 
 void GameLayer::statusChange(int newStatus) {
+	char szName[100] = { 0 };
 	switch (newStatus) {
 	case STATUS_PLAYING:
 		_labelInfo->setString("");
 		break;
 	case STATUS_DIED:
 		_labelInfo->setString("You DIE!");
+		sprintf(szName, "Rec: %i", RecordsManager::getPoints());
+		_labelRecord->setString(szName);
 		break;
 	case STATUS_WAIT:
 		_labelInfo->setString("Tap to launch");
