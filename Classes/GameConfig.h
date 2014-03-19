@@ -25,7 +25,9 @@
 #define FACTOR_ALTITUDE_RECORD 10
 enum {
 	sprideIdRocket = 1,
-	spriteIdCloud
+	spriteIdTail,
+	gameIdBatchNode,
+	spriteIdCloud,
 };
 
 enum {

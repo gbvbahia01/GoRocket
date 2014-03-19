@@ -47,7 +47,7 @@ void GameLayer::initLayer() {
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("art.plist");
 	_gameBatchNode = CCSpriteBatchNode::create("art.png");
 	_gameBatchNode->retain();
-	this->addChild(_gameBatchNode);
+	this->addChild(_gameBatchNode, kMiddleground, gameIdBatchNode);
 
 	_gameManager = new GameManager(this);
 	_gameManager->init();

@@ -80,22 +80,8 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<folderInfo id="0.756827735.642944678" name="/" resourcePath="Classes">
-						<toolChain id="org.eclipse.cdt.build.core.prefbase.toolchain.1428052936" name="No ToolChain" superClass="org.eclipse.cdt.build.core.prefbase.toolchain" unusedChildren="">
-							<tool id="org.eclipse.cdt.build.core.settings.holder.libs.1111733792" name="holder for library settings" superClass="org.eclipse.cdt.build.core.settings.holder.libs.1844369373"/>
-							<tool id="org.eclipse.cdt.build.core.settings.holder.1473181442" name="Assembly" superClass="org.eclipse.cdt.build.core.settings.holder.991472034">
-								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.1496882939" languageId="org.eclipse.cdt.core.assembly" languageName="Assembly" sourceContentType="org.eclipse.cdt.core.asmSource" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
-							</tool>
-							<tool id="org.eclipse.cdt.build.core.settings.holder.655741073" name="GNU C++" superClass="org.eclipse.cdt.build.core.settings.holder.2035290044">
-								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.2107211733" languageId="org.eclipse.cdt.core.g++" languageName="GNU C++" sourceContentType="org.eclipse.cdt.core.cxxSource,org.eclipse.cdt.core.cxxHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
-							</tool>
-							<tool id="org.eclipse.cdt.build.core.settings.holder.2097909432" name="GNU C" superClass="org.eclipse.cdt.build.core.settings.holder.731367497">
-								<inputType id="org.eclipse.cdt.build.core.settings.holder.inType.796915528" languageId="org.eclipse.cdt.core.gcc" languageName="GNU C" sourceContentType="org.eclipse.cdt.core.cSource,org.eclipse.cdt.core.cHeader" superClass="org.eclipse.cdt.build.core.settings.holder.inType"/>
-							</tool>
-						</toolChain>
-					</folderInfo>
 					<sourceEntries>
-						<entry excluding="extensions|scripting|cocos2dx|Resources|Classes" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="scripting|extensions|cocos2dx|Resources|Classes" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Classes"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Resources"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="cocos2dx"/>

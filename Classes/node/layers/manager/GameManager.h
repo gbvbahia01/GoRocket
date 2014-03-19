@@ -8,18 +8,19 @@
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
 #include "../contract/LayerContract.h"
-#include "../../sprite/contract/SpriteContract.h"
+#include "../../sprite/Rocket.h"
 #include "../../../GameConfig.h"
 #include "../../../RecordsManager.h"
 
 class GameManager: public cocos2d::CCObject {
 private:
 	LayerContract * _layer;
-	SpriteContract * _rocket;
+	Rocket * _rocket;
 	float _speed;
 	float rand(void);
 	float _factor;
 	float _forceTap;
+	void changeToWait();
 public:
 	GameManager(LayerContract * layer);
 	virtual ~GameManager();
