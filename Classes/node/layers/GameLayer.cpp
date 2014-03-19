@@ -13,6 +13,8 @@ GameLayer::GameLayer() {
 	_bg = NULL;
 	_gameManager = NULL;
 	_labelInfo = NULL;
+	_labelAltitude = NULL;
+	_labelRecord = NULL;
 	setKeypadEnabled(true);
 	setTouchEnabled(true);
 }
@@ -56,6 +58,16 @@ void GameLayer::initLayer() {
 	_labelInfo->retain();
 	this->addChild(_labelInfo);
 
+	_labelAltitude = CCLabelTTF::create("0", "Times New Roman", 20);
+	_labelAltitude->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.075f));
+	_labelAltitude->retain();
+	this->addChild(_labelAltitude);
+
+	_labelRecord = CCLabelTTF::create("0", "Times New Roman", 20);
+	_labelRecord->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.05f));
+	_labelRecord->retain();
+	this->addChild(_labelRecord);
+
 	this->scheduleUpdate();
 
 }
@@ -71,6 +83,12 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
 
 void GameLayer::update(float dt) {
 	_gameManager->update(dt);
+	char szName[100] = { 0 };
+	sprintf(szName, "Alt: %i", ((int)_gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
+	_labelAltitude->setString(szName);
+
+	sprintf(szName, "Rec: %i", RecordsManager::getPoints());
+	_labelRecord->setString(szName);
 }
 
 void GameLayer::statusChange(int newStatus) {

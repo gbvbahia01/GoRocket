@@ -13,6 +13,7 @@
 //#include "SimpleAudioEngine.h"
 #include "contract/LayerContract.h"
 #include "manager/GameManager.h"
+#include "../../RecordsManager.h"
 
 USING_NS_CC;
 //using namespace CocosDenshion;
@@ -36,6 +37,8 @@ private:
     CCSprite * _bg;
     GameManager * _gameManager;
     CCLabelTTF * _labelInfo;
+    CCLabelTTF * _labelAltitude;
+    CCLabelTTF * _labelRecord;
 };
 
 #endif /* GAMELAYER_H_ */

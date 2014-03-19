@@ -10,21 +10,21 @@
 #include "../contract/LayerContract.h"
 #include "../../sprite/contract/SpriteContract.h"
 #include "../../../GameConfig.h"
+#include "../../../RecordsManager.h"
 
 class GameManager: public cocos2d::CCObject {
 private:
 	LayerContract * _layer;
 	SpriteContract * _rocket;
-	inline float rand(void){ // RAND_MAX assumed to be 32767
-		static long int next = 1;
-	    next = next * 1103515245 + 12345;
-	    int toDivide = (unsigned int)(next/65536) % 300;
-	    return toDivide / 100.0f;
-	}
+	float _speed;
+	float rand(void);
+	float _factor;
+	float _forceTap;
 public:
 	GameManager(LayerContract * layer);
 	virtual ~GameManager();
 	CC_SYNTHESIZE(int, _status, Status);
+	CC_SYNTHESIZE(float, _altitude, Altitude);
 	void init();
     //Actions
 	virtual void ccTouchesBegan(CCSet* pTouches, CCEvent* event);
