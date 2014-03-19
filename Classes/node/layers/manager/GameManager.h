@@ -16,16 +16,17 @@ class GameManager: public cocos2d::CCObject {
 private:
 	LayerContract * _layer;
 	Rocket * _rocket;
-	float _speed;
 	float rand(void);
 	float _factor;
 	float _forceTap;
+	float _timeWaitDie;
 	void changeToWait();
 public:
 	GameManager(LayerContract * layer);
 	virtual ~GameManager();
 	CC_SYNTHESIZE(int, _status, Status);
 	CC_SYNTHESIZE(float, _altitude, Altitude);
+	CC_SYNTHESIZE(float, _speed, Speed);
 	void init();
     //Actions
 	virtual void ccTouchesBegan(CCSet* pTouches, CCEvent* event);

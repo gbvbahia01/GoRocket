@@ -15,6 +15,7 @@ GameManager::GameManager(LayerContract * layer) {
 	_speed = SPEED_START;
 	_factor = FACTOR_ANGLE_FORCE;
 	_forceTap = TAP_FORCE_START;
+	_timeWaitDie = 0;
 }
 
 GameManager::~GameManager() {
@@ -68,6 +69,7 @@ void GameManager::changeToWait(){
 	_speed = SPEED_START;
 	_factor = FACTOR_ANGLE_FORCE;
 	_forceTap = TAP_FORCE_START;
+	_timeWaitDie = 0;
 }
 
 void GameManager::update(float dt) {
@@ -83,9 +85,9 @@ void GameManager::update(float dt) {
 		float randValue = rand();
 		if (_rocket->getRotation() < MIN_ANGLE || _rocket->getRotation() > MAX_ANGLE) {
 			RecordsManager::informAltitude(_altitude);
-			_rocket->die();
-			_status = STATUS_DIED;
-			_layer->statusChange(STATUS_DIED);
+			_timeWaitDie = _rocket->die();
+			_status = STATUS_WAIT_DIE;
+			_layer->statusChange(STATUS_WAIT_DIE);
 		} else if (_rocket->getRotation() > 0) {
 			_rocket->addAngle(randValue - _factor < 0 ? 0 : randValue - _factor);
 		} else if (_rocket->getRotation() < 0) {
@@ -106,6 +108,15 @@ void GameManager::update(float dt) {
 		_forceTap += dt;
 		if(_forceTap > TAP_FORCE_MAX){
 			_forceTap = TAP_FORCE_MAX;
+		}
+		_rocket->update(dt);
+	}
+	else if(_status == STATUS_WAIT_DIE){
+		_timeWaitDie -= dt;
+		if(_timeWaitDie <= 0){
+			_timeWaitDie = 0;
+			_status = STATUS_DIED;
+			_layer->statusChange(STATUS_DIED);
 		}
 	}
 }

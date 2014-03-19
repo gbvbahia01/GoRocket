@@ -40,9 +40,9 @@ GameLayer * GameLayer::create() {
 
 void GameLayer::initLayer() {
 	_bg = CCSprite::create("bg.png");
-	_bg->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
+	_bg->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * SPACE_X_POSITION_INI));
 	_bg->retain();
-	this->addChild(_bg);
+	this->addChild(_bg, kBackground, spriteIdBg);
 
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("art.plist");
 	_gameBatchNode = CCSpriteBatchNode::create("art.png");
@@ -56,19 +56,19 @@ void GameLayer::initLayer() {
 	_labelInfo = CCLabelTTF::create("Tap to launch", "Times New Roman", 30);
 	_labelInfo->setPosition(ccp(_screenSize.width * 0.2f, _screenSize.height * 0.10f));
 	_labelInfo->retain();
-	this->addChild(_labelInfo);
+	this->addChild(_labelInfo, kMiddleground);
 
 	_labelAltitude = CCLabelTTF::create("0", "Times New Roman", 20);
 	_labelAltitude->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.075f));
 	_labelAltitude->retain();
-	this->addChild(_labelAltitude);
+	this->addChild(_labelAltitude, kMiddleground);
 
 	char szName[100] = { 0 };
 	sprintf(szName, "Rec: %i", RecordsManager::getPoints());
 	_labelRecord = CCLabelTTF::create(szName, "Times New Roman", 20);
 	_labelRecord->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.05f));
 	_labelRecord->retain();
-	this->addChild(_labelRecord);
+	this->addChild(_labelRecord, kMiddleground);
 
 	this->scheduleUpdate();
 
@@ -88,6 +88,13 @@ void GameLayer::update(float dt) {
 	char szName[100] = { 0 };
 	sprintf(szName, "Alt: %i", ((int) _gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
 	_labelAltitude->setString(szName);
+	if(_gameManager->getStatus() == STATUS_PLAYING){
+		if(_bg->getPositionY() > SPACE_X_POSITION_MAX){
+			_bg->setPosition(ccp(_screenSize.width * 0.5f, _bg->getPositionY() - (dt * _gameManager->getSpeed() * SPEED_PARALAX_FACTOR)));
+		}else {
+			_bg->setPosition(ccp(_screenSize.width * 0.5f, SPACE_X_POSITION_MAX));
+		}
+	}
 }
 
 void GameLayer::statusChange(int newStatus) {
@@ -103,6 +110,7 @@ void GameLayer::statusChange(int newStatus) {
 		break;
 	case STATUS_WAIT:
 		_labelInfo->setString("Tap to launch");
+		_bg->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * SPACE_X_POSITION_INI));
 		break;
 	default:
 		break;
