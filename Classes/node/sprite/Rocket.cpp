@@ -20,7 +20,7 @@ Rocket* Rocket::create(LayerContract * layer) {
 	Rocket * rocket = new Rocket(layer);
 	if (rocket && rocket->initWithSpriteFrameName("rocket.png")) {
 		rocket->setRadius(rocket->boundingBox().size.height * 0.5f);
-		rocket->_layer->getGameBatchNode()->addChild(rocket);
+		rocket->_layer->getGameBatchNode()->addChild(rocket, kForeground, sprideIdRocket);
 		rocket->initSprite();
 		rocket->setVisible(true);
 		return rocket;

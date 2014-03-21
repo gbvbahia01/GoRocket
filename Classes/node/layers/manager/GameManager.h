@@ -7,6 +7,7 @@
 
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
+#include "ParallaxInScreen.h"
 #include "../contract/LayerContract.h"
 #include "../../sprite/Rocket.h"
 #include "../../../GameConfig.h"
@@ -21,12 +22,16 @@ private:
 	float _forceTap;
 	float _timeWaitDie;
 	void changeToWait();
+	void createParallaxObjects();
+	void updateParallaxObjects();
+	SpriteContract * createSprite(const char * name);
 public:
 	GameManager(LayerContract * layer);
 	virtual ~GameManager();
 	CC_SYNTHESIZE(int, _status, Status);
 	CC_SYNTHESIZE(float, _altitude, Altitude);
 	CC_SYNTHESIZE(float, _speed, Speed);
+	CC_SYNTHESIZE(cocos2d::CCArray *, _parallax, Parallax);
 	void init();
     //Actions
 	virtual void ccTouchesBegan(CCSet* pTouches, CCEvent* event);
