@@ -7,46 +7,39 @@
 
 #include "ParallaxInScreen.h"
 
-ParallaxInScreen::ParallaxInScreen(const char *id, float altitude, SpriteContract * sprite) {
-	_id = id;
+ParallaxInScreen::ParallaxInScreen(SpriteContract * sprite) {
 	_sprite = sprite;
-	_alreadyDisplayed = false;
-	_altitude = altitude;
-	if(_id == ID_SUN_PARALLAX || _id == ID_CLOUD1_PARALLAX || _id == ID_CLOUD2_PARALLAX || _id == ID_CLOUD3_PARALLAX){
-		_initShow = true;
-	}else {
-		_initShow = false;
-	}
+	_speed = 0.0f;
 }
 
 ParallaxInScreen::~ParallaxInScreen() {
 }
 
-void ParallaxInScreen::display(LayerContract * layer) {
-	if (_id == ID_SUN_PARALLAX) {
-		_sprite->setPosition(ccp(layer->getScreenSize().width * 0.2f, layer->getScreenSize().height * 0.90f));
-	}else if(_id == ID_CLOUD1_PARALLAX) {
-		_sprite->setPosition(ccp(layer->getScreenSize().width * 0.25f, layer->getScreenSize().height * 0.50f));
-	}else if(_id == ID_CLOUD2_PARALLAX) {
-		_sprite->setPosition(ccp(layer->getScreenSize().width * 0.5f, layer->getScreenSize().height * 0.45f));
-	}else if(_id == ID_CLOUD3_PARALLAX) {
-		_sprite->setPosition(ccp(layer->getScreenSize().width * 0.75f, layer->getScreenSize().height * 0.40f));
-	}else if(_id == ID_MOON_PARALLAX) {
-		_sprite->setPosition(ccp(layer->getScreenSize().width * 0.8f, layer->getScreenSize().height * 1.2f));
+void ParallaxInScreen::display(LayerContract * layer, float width, float scale) {
+	if(width > 1){
+		CCLog("width > 1 %i", width);
+	}else if(width < 0){
+		CCLog("width < 0 %i", width);
 	}
+	_sprite->setPosition(ccp(layer->getScreenSize().width * width, layer->getScreenSize().height * 1.20f));
+	_sprite->setScale(scale);
 	_sprite->setVisible(true);
-	_alreadyDisplayed = true;
+	_speed = SPEED_PARALAX_FACTOR * scale;
 }
 
 void ParallaxInScreen::move(LayerContract * layer) {
-	if (_alreadyDisplayed && _sprite->isVisible()) {
-		_sprite->setPosition(ccp(_sprite->getPositionX(), _sprite->getPositionY() - (SPEED_PARALAX_FACTOR / 10)));
+	if (_sprite->isVisible()) {
+		_sprite->setPosition(ccp(_sprite->getPositionX(), _sprite->getPositionY() - (_speed / 10)));
 	}
-	if(_alreadyDisplayed && _sprite->isVisible() && _sprite->getPositionY() < -(layer->getScreenSize().height * 0.2f)) {
+	if(_sprite->isVisible() && _sprite->getPositionY() < -(layer->getScreenSize().height * 0.2f)) {
 		hide();
 	}
 }
 
 void ParallaxInScreen::hide() {
 	_sprite->setVisible(false);
+}
+
+bool ParallaxInScreen::isVisible(){
+	return _sprite->isVisible();
 }

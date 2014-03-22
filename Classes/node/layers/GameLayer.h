@@ -34,7 +34,8 @@ public:
     void keyBackClicked();
 
 private:
-    CCSprite * _bg;
+    CCSprite * _bg1;
+    CCSprite * _bg2;
     GameManager * _gameManager;
     CCLabelTTF * _labelInfo;
     CCLabelTTF * _labelAltitude;

@@ -10,7 +10,8 @@
 static GameLayer* _instance = NULL;
 
 GameLayer::GameLayer() {
-	_bg = NULL;
+	_bg1 = NULL;
+	_bg2 = NULL;
 	_gameManager = NULL;
 	_labelInfo = NULL;
 	_labelAltitude = NULL;
@@ -39,10 +40,15 @@ GameLayer * GameLayer::create() {
 }
 
 void GameLayer::initLayer() {
-	_bg = CCSprite::create("bg.png");
-	_bg->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * SPACE_X_POSITION_INI));
-	_bg->retain();
-	this->addChild(_bg, kBackground, spriteIdBg);
+	_bg1 = CCSprite::create("bg1.png");
+	_bg1->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
+	_bg1->retain();
+	this->addChild(_bg1, kBackground, spriteIdBg);
+
+	_bg2 = CCSprite::create("bg2.png");
+	_bg2->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 1.5f));
+	_bg2->retain();
+	this->addChild(_bg2, kBackground, spriteIdBg);
 
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("art.plist");
 	_gameBatchNode = CCSpriteBatchNode::create("art.png");
@@ -88,11 +94,13 @@ void GameLayer::update(float dt) {
 	char szName[100] = { 0 };
 	sprintf(szName, "Alt: %i", ((int) _gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
 	_labelAltitude->setString(szName);
-	if(_gameManager->getStatus() == STATUS_PLAYING){
-		if(_bg->getPositionY() > SPACE_X_POSITION_MAX){
-			_bg->setPosition(ccp(_screenSize.width * 0.5f, _bg->getPositionY() - (dt * _gameManager->getSpeed() * SPEED_PARALAX_FACTOR)));
-		}else {
-			_bg->setPosition(ccp(_screenSize.width * 0.5f, SPACE_X_POSITION_MAX));
+	if (_gameManager->getStatus() == STATUS_PLAYING) {
+		if (_bg2->getPositionY() > _screenSize.height * 0.5f) {
+			_bg1->setPosition(ccp(_screenSize.width * 0.5f, _bg1->getPositionY() - (dt * _gameManager->getSpeed() * SPEED_PARALAX_FACTOR)));
+			_bg2->setPosition(ccp(_screenSize.width * 0.5f, _bg2->getPositionY() - (dt * _gameManager->getSpeed() * SPEED_PARALAX_FACTOR)));
+		} else {
+			_bg2->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
+			_gameManager->setShowParallax(true);
 		}
 	}
 }
@@ -107,12 +115,18 @@ void GameLayer::statusChange(int newStatus) {
 		_labelInfo->setString("You DIE!");
 		sprintf(szName, "Rec: %i", RecordsManager::getPoints());
 		_labelRecord->setString(szName);
+		_gameManager->setShowParallax(false);
+		break;
+	case STATUS_WAIT_DIE:
+		_gameManager->setShowParallax(false);
 		break;
 	case STATUS_WAIT:
 		_labelInfo->setString("Tap to launch");
-		_bg->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * SPACE_X_POSITION_INI));
+		_gameManager->setShowParallax(false);
+		_bg1->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
+		_bg2->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 1.5f));
 		break;
-	default:
+		default:
 		break;
 	}
 }
