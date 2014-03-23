@@ -9,6 +9,7 @@
 #define GAMEMANAGER_H_
 #include "ParallaxInScreen.h"
 #include "../contract/LayerContract.h"
+#include "../../sprite/Meter.h"
 #include "../../sprite/Rocket.h"
 #include "../../../GameConfig.h"
 #include "../../../RecordsManager.h"
@@ -17,6 +18,7 @@ class GameManager: public cocos2d::CCObject {
 private:
 	LayerContract * _layer;
 	Rocket * _rocket;
+	Meter * _meter;
 	float rand(int factorMax);
 	float _factor;
 	float _forceTap;

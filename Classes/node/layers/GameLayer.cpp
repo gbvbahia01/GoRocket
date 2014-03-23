@@ -98,6 +98,9 @@ void GameLayer::update(float dt) {
 		if (_bg2->getPositionY() > _screenSize.height * 0.5f) {
 			_bg1->setPosition(ccp(_screenSize.width * 0.5f, _bg1->getPositionY() - (dt * _gameManager->getSpeed() * SPEED_PARALAX_FACTOR)));
 			_bg2->setPosition(ccp(_screenSize.width * 0.5f, _bg2->getPositionY() - (dt * _gameManager->getSpeed() * SPEED_PARALAX_FACTOR)));
+			if(_bg2->getPositionY() < _screenSize.height * 0.60f){
+				_gameManager->setShowParallax(true);
+			}
 		} else {
 			_bg2->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
 			_gameManager->setShowParallax(true);

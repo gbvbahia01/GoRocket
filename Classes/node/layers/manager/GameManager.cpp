@@ -10,6 +10,7 @@
 GameManager::GameManager(LayerContract * layer) {
 	_layer = layer;
 	_rocket = NULL;
+	_meter = NULL;
 	_status = 0;
 	_altitude = 0;
 	_showParallax = false;
@@ -33,6 +34,7 @@ GameManager::~GameManager() {
 
 void GameManager::init() {
 	createParallaxObjects();
+	_meter = Meter::create(_layer);
 	_rocket = Rocket::create(_layer);
 	changeToWait();
 }
@@ -65,6 +67,7 @@ void GameManager::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
 void GameManager::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
 	if (_status == STATUS_WAIT) {
 		_rocket->start();
+		_meter->start();
 		_status = STATUS_PLAYING;
 		_layer->statusChange(STATUS_PLAYING);
 	} else if (_status == STATUS_DIED) {
@@ -76,6 +79,7 @@ void GameManager::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
 void GameManager::changeToWait() {
 	_status = STATUS_WAIT;
 	_rocket->wait();
+	_meter->wait();
 	_altitude = 0;
 	_speed = SPEED_START;
 	_factor = FACTOR_ANGLE_START;
@@ -138,6 +142,7 @@ void GameManager::update(float dt) {
 		}
 
 		_rocket->update(dt);
+		_meter->setNeedleAngle(_rocket->getRotation());
 	} else if (_status == STATUS_WAIT_DIE) {
 		_timeWaitDie -= dt;
 		if (_timeWaitDie <= 0) {
@@ -158,6 +163,11 @@ void GameManager::createParallaxObjects() {
 		ParallaxInScreen * star6 = new ParallaxInScreen(createSprite("star_6.png"));
 		ParallaxInScreen * star7 = new ParallaxInScreen(createSprite("star_7.png"));
 		ParallaxInScreen * star8 = new ParallaxInScreen(createSprite("star_8.png"));
+		ParallaxInScreen * star9 = new ParallaxInScreen(createSprite("star_9.png"));
+		ParallaxInScreen * star10 = new ParallaxInScreen(createSprite("star_10.png"));
+		ParallaxInScreen * star11 = new ParallaxInScreen(createSprite("star_11.png"));
+		ParallaxInScreen * star12 = new ParallaxInScreen(createSprite("star_12.png"));
+		ParallaxInScreen * star13 = new ParallaxInScreen(createSprite("star_13.png"));
 		_parallaxStar->addObject(star1);
 		_parallaxStar->addObject(star2);
 		_parallaxStar->addObject(star3);
@@ -166,6 +176,11 @@ void GameManager::createParallaxObjects() {
 		_parallaxStar->addObject(star6);
 		_parallaxStar->addObject(star7);
 		_parallaxStar->addObject(star8);
+		_parallaxStar->addObject(star9);
+		_parallaxStar->addObject(star10);
+		_parallaxStar->addObject(star11);
+		_parallaxStar->addObject(star12);
+		_parallaxStar->addObject(star13);
 	}
 
 

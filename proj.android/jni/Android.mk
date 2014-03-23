@@ -10,6 +10,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
                    ../../Classes/RecordsManager.cpp \
                    ../../Classes/node/sprite/contract/SpriteContract.cpp \
+                   ../../Classes/node/sprite/Meter.cpp \
                    ../../Classes/node/sprite/Rocket.cpp \
                    ../../Classes/node/layers/manager/ParallaxInScreen.cpp \
                    ../../Classes/node/layers/manager/GameManager.cpp \
