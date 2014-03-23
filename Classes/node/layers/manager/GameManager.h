@@ -7,6 +7,8 @@
 
 #ifndef GAMEMANAGER_H_
 #define GAMEMANAGER_H_
+
+#include "SimpleAudioEngine.h"
 #include "ParallaxInScreen.h"
 #include "../contract/LayerContract.h"
 #include "../../sprite/Meter.h"

@@ -71,6 +71,7 @@ void GameManager::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
 		_status = STATUS_PLAYING;
 		_layer->statusChange(STATUS_PLAYING);
 	} else if (_status == STATUS_DIED) {
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
 		changeToWait();
 		_layer->statusChange(STATUS_WAIT);
 	}

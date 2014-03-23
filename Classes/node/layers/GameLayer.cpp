@@ -112,18 +112,24 @@ void GameLayer::statusChange(int newStatus) {
 	char szName[100] = { 0 };
 	switch (newStatus) {
 	case STATUS_PLAYING:
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(SOUND_FLYING, true);
 		_labelInfo->setString("");
 		break;
 	case STATUS_DIED:
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 		_labelInfo->setString("You DIE!");
 		sprintf(szName, "Rec: %i", RecordsManager::getPoints());
 		_labelRecord->setString(szName);
 		_gameManager->setShowParallax(false);
 		break;
 	case STATUS_WAIT_DIE:
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_BOOM);
 		_gameManager->setShowParallax(false);
 		break;
 	case STATUS_WAIT:
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_WIND);
 		_labelInfo->setString("Tap to launch");
 		_gameManager->setShowParallax(false);
 		_bg1->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));

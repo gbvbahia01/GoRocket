@@ -10,7 +10,7 @@
 
 #include "cocos2d.h"
 #include "../../GameConfig.h"
-//#include "SimpleAudioEngine.h"
+#include "SimpleAudioEngine.h"
 #include "contract/LayerContract.h"
 #include "manager/GameManager.h"
 #include "../../RecordsManager.h"

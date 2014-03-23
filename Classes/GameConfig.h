@@ -43,6 +43,13 @@
 #define ORANGE_COLOR ccc4f(0.88f, 0.53f, 0.06f, 1.0f)
 #define RED_DARCK_COLOR ccc4f(0.57f, 0.1f, 0.0f, 1.0f)
 
+//Sound
+#define SOUND_CLICK "click.ogg"
+#define SOUND_BOOM "boom.ogg"
+#define SOUND_WIND "wind.ogg"
+#define SOUND_FLYING "flying.ogg"
+#define SOUND_VOLUME 0.5f
+
 enum {
 	sprideIdRocket = 1,
 	spriteIdTail,

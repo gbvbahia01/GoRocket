@@ -1,8 +1,7 @@
 #include "AppDelegate.h"
-#include "GameConfig.h"
-#include "node/layers/GameLayer.h"
 
 USING_NS_CC;
+using namespace cocos2d;
 
 AppDelegate::AppDelegate() {
 
@@ -22,7 +21,13 @@ bool AppDelegate::applicationDidFinishLaunching() {
     CCSize designSize = CCSize(PIXELS_COLUMNS, PIXELS_ROWS);
     CCEGLView::sharedOpenGLView()->setDesignResolutionSize(designSize.width, designSize.height, kResolutionExactFit);
 
-
+    //Audio
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(CCFileUtils::sharedFileUtils()->fullPathForFilename(SOUND_FLYING).c_str());
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect( CCFileUtils::sharedFileUtils()->fullPathForFilename(SOUND_CLICK).c_str());
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect( CCFileUtils::sharedFileUtils()->fullPathForFilename(SOUND_BOOM).c_str());
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect( CCFileUtils::sharedFileUtils()->fullPathForFilename(SOUND_WIND).c_str());
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->setEffectsVolume(SOUND_VOLUME);
+    CocosDenshion::SimpleAudioEngine::sharedEngine()->setBackgroundMusicVolume(SOUND_VOLUME);
     // turn on display FPS
     pDirector->setDisplayStats(false);
 
