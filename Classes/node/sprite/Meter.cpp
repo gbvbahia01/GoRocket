@@ -20,7 +20,7 @@ Meter* Meter::create(LayerContract * layer) {
 	Meter * meter = new Meter(layer);
 	if (meter && meter->initWithSpriteFrameName("meter.png")) {
 		meter->setRadius(meter->boundingBox().size.height * 0.5f);
-		meter->setPosition(ccp(layer->getScreenSize().width * 0.8375f, layer->getScreenSize().height * 0.058f));
+		meter->setPosition(ccp(layer->getScreenSize().width * 0.8375f, layer->getScreenSize().height * 0.075f));
 		layer->getGameBatchNode()->addChild(meter, kForeground, sprideIdRocket);
 		meter->initSprite();
 		meter->setVisible(false);
@@ -36,7 +36,7 @@ void Meter::initSprite() {
 	this->addChild(_needle);
 	_needle->retain();
 	_needle->setPositionX(_needle->getPositionX() + 128);
-	_needle->setPositionY(_needle->getPositionY() + 70);
+	_needle->setPositionY(_needle->getPositionY() + 55);
 }
 
 void Meter::wait(){

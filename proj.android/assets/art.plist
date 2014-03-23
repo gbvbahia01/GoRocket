@@ -59,13 +59,13 @@
             <key>meter.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,518},{256,144}}</string>
+                <string>{{2,518},{256,162}}</string>
                 <key>offset</key>
-                <string>{0,-4}</string>
+                <string>{0,-14}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,60},{256,144}}</string>
+                <string>{{0,61},{256,162}}</string>
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
@@ -189,7 +189,7 @@
             <key>rocket_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,856},{140,242}}</string>
+                <string>{{2,874},{140,242}}</string>
                 <key>offset</key>
                 <string>{1,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>rocket_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,664},{190,248}}</string>
+                <string>{{2,682},{190,248}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,7 +241,7 @@
             <key>rocket_6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,998},{194,236}}</string>
+                <string>{{2,1016},{194,236}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -280,7 +280,7 @@
             <key>rocket_9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,1194},{190,190}}</string>
+                <string>{{2,1212},{190,190}}</string>
                 <key>offset</key>
                 <string>{2,-1}</string>
                 <key>rotated</key>
@@ -534,7 +534,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a7bd66f43342536816dc60b544c38f09:dca354be0a5213bd213f6fc70532cef7:ce74f62e8f18832799afe8f099e7b8c5$</string>
+            <string>$TexturePacker:SmartUpdate:f39b3ef6b4a320ace04681281750dd80:b74aa0465f9ecd8ae585519e1c817452:ce74f62e8f18832799afe8f099e7b8c5$</string>
             <key>textureFileName</key>
             <string>art.png</string>
         </dict>

@@ -64,15 +64,19 @@ void GameLayer::initLayer() {
 	_labelInfo->retain();
 	this->addChild(_labelInfo, kMiddleground);
 
-	_labelAltitude = CCLabelTTF::create("0", "Times New Roman", 20);
-	_labelAltitude->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.075f));
+	 CCSize blockSize = CCSizeMake(100, 50);
+
+	_labelAltitude = CCLabelTTF::create("0", FONT_DIGITAL_NAME, FONT_SIZE, blockSize, kCCTextAlignmentLeft, kCCVerticalTextAlignmentTop);
+	_labelAltitude->setFontFillColor(RED_DARCK_COLOR_3B, true);
+	_labelAltitude->setPosition(ccp(_screenSize.width * 0.755f, _screenSize.height * 0.002f));
 	_labelAltitude->retain();
 	this->addChild(_labelAltitude, kMiddleground);
 
 	char szName[100] = { 0 };
-	sprintf(szName, "Rec: %i", RecordsManager::getPoints());
-	_labelRecord = CCLabelTTF::create(szName, "Times New Roman", 20);
-	_labelRecord->setPosition(ccp(_screenSize.width * 0.12f, _screenSize.height * 0.05f));
+	sprintf(szName, "RC:%i", RecordsManager::getPoints());
+	_labelRecord = CCLabelTTF::create(szName, FONT_DIGITAL_NAME, FONT_SIZE, blockSize, kCCTextAlignmentRight, kCCVerticalTextAlignmentTop);
+	_labelRecord->setPosition(ccp(_screenSize.width * 0.92f, _screenSize.height * 0.002f));
+	_labelRecord->setFontFillColor(ORANGE_COLOR_3B, true);
 	_labelRecord->retain();
 	this->addChild(_labelRecord, kMiddleground);
 
@@ -92,7 +96,7 @@ void GameLayer::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
 void GameLayer::update(float dt) {
 	_gameManager->update(dt);
 	char szName[100] = { 0 };
-	sprintf(szName, "Alt: %i", ((int) _gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
+	sprintf(szName, "Al:%i", ((int) _gameManager->getAltitude() * FACTOR_ALTITUDE_RECORD));
 	_labelAltitude->setString(szName);
 	if (_gameManager->getStatus() == STATUS_PLAYING) {
 		if (_bg2->getPositionY() > _screenSize.height * 0.5f) {
@@ -118,7 +122,7 @@ void GameLayer::statusChange(int newStatus) {
 	case STATUS_DIED:
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 		_labelInfo->setString("You DIE!");
-		sprintf(szName, "Rec: %i", RecordsManager::getPoints());
+		sprintf(szName, "RC:%i", RecordsManager::getPoints());
 		_labelRecord->setString(szName);
 		_gameManager->setShowParallax(false);
 		break;

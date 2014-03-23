@@ -42,13 +42,19 @@
 #define YELLOW_COLOR ccc4f(0.9f, 0.89f, 0.3f, 1.0f)
 #define ORANGE_COLOR ccc4f(0.88f, 0.53f, 0.06f, 1.0f)
 #define RED_DARCK_COLOR ccc4f(0.57f, 0.1f, 0.0f, 1.0f)
-
+#define RED_DARCK_COLOR_3B ccRED
+#define ORANGE_COLOR_3B ccORANGE
 //Sound
 #define SOUND_CLICK "click.ogg"
 #define SOUND_BOOM "boom.ogg"
 #define SOUND_WIND "wind.ogg"
 #define SOUND_FLYING "flying.ogg"
 #define SOUND_VOLUME 0.5f
+
+//Font
+#define FONT_SIZE 20
+#define FONT_NAME "fonts/AARDC___.ttf"
+#define FONT_DIGITAL_NAME "fonts/DS-DIGIB.ttf"
 
 enum {
 	sprideIdRocket = 1,
