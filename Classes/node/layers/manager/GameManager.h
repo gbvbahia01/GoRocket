@@ -21,6 +21,9 @@ private:
 	LayerContract * _layer;
 	Rocket * _rocket;
 	Meter * _meter;
+    SpriteContract * _start;
+    SpriteContract * _die;
+
 	float rand(int factorMax);
 	float _factor;
 	float _forceTap;

@@ -36,8 +36,9 @@ public:
 private:
     CCSprite * _bg1;
     CCSprite * _bg2;
+    CCSprite * _waitBg;
+
     GameManager * _gameManager;
-    CCLabelTTF * _labelInfo;
     CCLabelTTF * _labelAltitude;
     CCLabelTTF * _labelRecord;
 };

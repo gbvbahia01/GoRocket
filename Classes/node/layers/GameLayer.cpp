@@ -12,8 +12,8 @@ static GameLayer* _instance = NULL;
 GameLayer::GameLayer() {
 	_bg1 = NULL;
 	_bg2 = NULL;
+	_waitBg = NULL;
 	_gameManager = NULL;
-	_labelInfo = NULL;
 	_labelAltitude = NULL;
 	_labelRecord = NULL;
 	setKeypadEnabled(true);
@@ -50,6 +50,11 @@ void GameLayer::initLayer() {
 	_bg2->retain();
 	this->addChild(_bg2, kBackground, spriteIdBg);
 
+	_waitBg = CCSprite::create("wait.png");
+	_waitBg->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
+	_waitBg->retain();
+	this->addChild(_waitBg, kBackground, spriteIdBg);
+
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("art.plist");
 	_gameBatchNode = CCSpriteBatchNode::create("art.png");
 	_gameBatchNode->retain();
@@ -58,11 +63,6 @@ void GameLayer::initLayer() {
 	_gameManager = new GameManager(this);
 	_gameManager->init();
 	_gameManager->retain();
-
-	_labelInfo = CCLabelTTF::create("Tap to launch", "Times New Roman", 30);
-	_labelInfo->setPosition(ccp(_screenSize.width * 0.2f, _screenSize.height * 0.10f));
-	_labelInfo->retain();
-	this->addChild(_labelInfo, kMiddleground);
 
 	 CCSize blockSize = CCSizeMake(100, 50);
 
@@ -117,27 +117,28 @@ void GameLayer::statusChange(int newStatus) {
 	switch (newStatus) {
 	case STATUS_PLAYING:
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(SOUND_FLYING, true);
-		_labelInfo->setString("");
+		_waitBg->setVisible(false);
 		break;
 	case STATUS_DIED:
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
-		_labelInfo->setString("You DIE!");
 		sprintf(szName, "RC:%i", RecordsManager::getPoints());
 		_labelRecord->setString(szName);
 		_gameManager->setShowParallax(false);
+		_waitBg->setVisible(false);
 		break;
 	case STATUS_WAIT_DIE:
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_BOOM);
 		_gameManager->setShowParallax(false);
+		_waitBg->setVisible(false);
 		break;
 	case STATUS_WAIT:
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_WIND);
-		_labelInfo->setString("Tap to launch");
 		_gameManager->setShowParallax(false);
 		_bg1->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
 		_bg2->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 1.5f));
+		_waitBg->setVisible(true);
 		break;
 		default:
 		break;

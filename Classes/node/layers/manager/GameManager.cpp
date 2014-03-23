@@ -11,6 +11,8 @@ GameManager::GameManager(LayerContract * layer) {
 	_layer = layer;
 	_rocket = NULL;
 	_meter = NULL;
+	_start = NULL;
+	_die = NULL;
 	_status = 0;
 	_altitude = 0;
 	_showParallax = false;
@@ -36,6 +38,10 @@ void GameManager::init() {
 	createParallaxObjects();
 	_meter = Meter::create(_layer);
 	_rocket = Rocket::create(_layer);
+	_start = createSprite("start.png");
+	_start->setPosition(ccp(_layer->getScreenSize().width * 0.5f, _layer->getScreenSize().height * 0.37f));
+	_die = createSprite("die.png");
+	_die->setPosition(ccp(_layer->getScreenSize().width * 0.5f, _layer->getScreenSize().height * 0.37f));
 	changeToWait();
 }
 
@@ -65,15 +71,38 @@ void GameManager::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
 }
 
 void GameManager::ccTouchesEnded(CCSet* pTouches, CCEvent* event) {
+	CCSetIterator it;
+	CCTouch* touch;
+	CCPoint tap;
 	if (_status == STATUS_WAIT) {
-		_rocket->start();
-		_meter->start();
-		_status = STATUS_PLAYING;
-		_layer->statusChange(STATUS_PLAYING);
+		for (it = pTouches->begin(); it != pTouches->end(); it++) {
+			touch = (CCTouch*) (*it);
+			if (touch) {
+				tap = touch->getLocation();
+				if (_start->boundingBox().containsPoint(tap)) {
+					_rocket->start();
+					_start->setVisible(false);
+					_meter->start();
+					_status = STATUS_PLAYING;
+					_layer->statusChange(STATUS_PLAYING);
+				}
+			}
+		}
+
 	} else if (_status == STATUS_DIED) {
-		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
-		changeToWait();
-		_layer->statusChange(STATUS_WAIT);
+		for (it = pTouches->begin(); it != pTouches->end(); it++) {
+			touch = (CCTouch*) (*it);
+			if (touch) {
+				tap = touch->getLocation();
+				if (_die->boundingBox().containsPoint(tap)) {
+					CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
+					changeToWait();
+					_layer->statusChange(STATUS_WAIT);
+					_start->setVisible(true);
+				}
+			}
+		}
+
 	}
 }
 
@@ -90,6 +119,8 @@ void GameManager::changeToWait() {
 	_timeWaitDie = 0;
 	_planetIndex = 0;
 	_showParallax = false;
+	_start->setVisible(true);
+	_die->setVisible(false);
 	for (int p = QTD_STAR_PARALLAX_OBJECTS - 1; p >= 0; p--) {
 		ParallaxInScreen * parallax = (ParallaxInScreen *) getParallaxStar()->objectAtIndex(p);
 		parallax->hide();
@@ -111,7 +142,7 @@ void GameManager::update(float dt) {
 		if (_speed > SPEED_MAX) {
 			_speed = SPEED_MAX;
 		}
-		float randValue = rand((int)(_factor * 100));
+		float randValue = rand((int) (_factor * 100));
 		if (_rocket->getRotation() < MIN_ANGLE || _rocket->getRotation() > MAX_ANGLE) {
 			RecordsManager::informAltitude(_altitude);
 			_timeWaitDie = _rocket->die();
@@ -149,13 +180,14 @@ void GameManager::update(float dt) {
 		if (_timeWaitDie <= 0) {
 			_timeWaitDie = 0;
 			_status = STATUS_DIED;
+			_die->setVisible(true);
 			_layer->statusChange(STATUS_DIED);
 		}
 	}
 }
 
 void GameManager::createParallaxObjects() {
-	for(int i = 0; i <= 4; i++){
+	for (int i = 0; i <= 4; i++) {
 		ParallaxInScreen * star1 = new ParallaxInScreen(createSprite("star_1.png"));
 		ParallaxInScreen * star2 = new ParallaxInScreen(createSprite("star_2.png"));
 		ParallaxInScreen * star3 = new ParallaxInScreen(createSprite("star_3.png"));
@@ -183,7 +215,6 @@ void GameManager::createParallaxObjects() {
 		_parallaxStar->addObject(star12);
 		_parallaxStar->addObject(star13);
 	}
-
 
 	ParallaxInScreen * p1 = new ParallaxInScreen(createSprite("mercurio.png"));
 	ParallaxInScreen * p2 = new ParallaxInScreen(createSprite("venus.png"));
@@ -231,7 +262,7 @@ void GameManager::updateParallaxObjects(float dt) {
 					_timeInterPlanet = TIME_INTER_PLANET;
 				}
 			}
-			if(_planetIndex > QTD_PLANET_PARALLAX_OBJECTS - 1){
+			if (_planetIndex > QTD_PLANET_PARALLAX_OBJECTS - 1) {
 				_planetIndex = 0;
 			}
 		}
