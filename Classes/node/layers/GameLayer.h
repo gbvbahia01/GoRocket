@@ -14,7 +14,8 @@
 #include "contract/LayerContract.h"
 #include "manager/GameManager.h"
 #include "../../RecordsManager.h"
-
+#include "platform/android/jni/JniHelper.h"
+#include <jni.h>
 USING_NS_CC;
 //using namespace CocosDenshion;
 
@@ -30,17 +31,30 @@ public:
 	void ccTouchesEnded(CCSet* pTouches, CCEvent* event);
 	void update(float dt);
 	void statusChange(int newStatus);
-    //Exit
+	void gameServicesSignIn();
+	//Exit
     void keyBackClicked();
 
 private:
+    int _showInterstitialControl;
     CCSprite * _bg1;
     CCSprite * _bg2;
-    CCSprite * _waitBg;
+	CCSprite * _soundON;
+	CCSprite * _soundOFF;
+    SpriteContract * _weakLeft;
+    SpriteContract * _weakRight;
+    SpriteContract * _strongLeft;
+    SpriteContract * _strongRight;
+    SpriteContract * _leaderboards;
+    SpriteContract * _share;
 
     GameManager * _gameManager;
     CCLabelTTF * _labelAltitude;
     CCLabelTTF * _labelRecord;
+    void showInterstitial();
+    void share();
+    void blinkTapsIni();
+    void blinkTapsEnd( SpriteContract * _sprite);
 };
 
 #endif /* GAMELAYER_H_ */

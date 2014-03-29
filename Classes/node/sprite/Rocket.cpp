@@ -43,12 +43,14 @@ void Rocket::initSprite() {
 	_boom->retain();
 	_boom->stopSystem();
 	_boom->setAutoRemoveOnFinish(false);
-	_boom->setScale(1.5f);
+	_boom->setScale(2.0f);
+	_boom->setStartColor(YELLOW_COLOR);
+	_boom->setEndColor(RED_DARCK_COLOR);
 	_layer->addChild(_boom, kMiddleground, spriteIdBoom);
 }
 
 void Rocket::start() {
-	_tail->setSourcePosition(ccp(-4,- getRadius() * 0.90f));
+	_tail->setSourcePosition(ccp(0,- getRadius() * 0.80f));
 	_tail->setAngle(180);
 	_tail->setVisible(true);
 	_tail->resetSystem();

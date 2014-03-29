@@ -9,6 +9,7 @@
 #define RECORDSMANAGER_H_
 #include "cocos2d.h"
 #include "GameConfig.h"
+
 USING_NS_CC;
 class RecordsManager {
 public:

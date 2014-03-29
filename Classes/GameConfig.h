@@ -50,6 +50,7 @@
 #define SOUND_WIND "wind.ogg"
 #define SOUND_FLYING "flying.ogg"
 #define SOUND_VOLUME 0.5f
+#define SOUND_MUTE 0.0
 
 //Font
 #define FONT_SIZE 20
