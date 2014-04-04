@@ -17,8 +17,9 @@ NDK 8e is important, you can have problems in build if you use another version.
 
 
 Licença/Licence:   
-Este jogo é livre pra você baixar modificar e publicar onde quiser. Solicito apenas que ao realizar qualquer melhoria no código você realize um pull request para que possamos aproveitar também suas melorias.   
+Este jogo é livre pra você baixar modificar e publicar onde quiser. Solicito apenas que ao realizar qualquer melhoria no código você faça um pull request para que possamos aproveitar suas melhorias.   
 This is a free game, you can get, modify e publish where you want. I appreciate a pull request with for any code modifications you made.   
 
 Perguntas/Questions:  
 brazilian-cocos2dx@googlegroups.com
+
