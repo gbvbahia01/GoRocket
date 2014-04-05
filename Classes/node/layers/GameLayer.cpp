@@ -19,6 +19,7 @@ GameLayer::GameLayer() {
 	_labelAltitude = NULL;
 	_labelRecord = NULL;
 	_leaderboards = NULL;
+	_achievements = NULL;
     _weakLeft = NULL;
     _weakRight = NULL;
     _strongLeft = NULL;
@@ -112,6 +113,15 @@ void GameLayer::initLayer() {
 	}
 	this->addChild(_leaderboards, kMiddleground);
 
+	_achievements = SpriteContract::createWithFrameName("trophy.png");
+	_achievements->setPosition(ccp(_screenSize.width * 0.1f, _screenSize.height * 0.15f));
+	if (RecordsManager::getPoints() > 0) {
+		_achievements->setVisible(true);
+	} else {
+		_achievements->setVisible(false);
+	}
+	this->addChild(_achievements, kMiddleground);
+
 	_share = SpriteContract::createWithFrameName("share.png");
 	_share->setPosition(ccp(_screenSize.width * 0.3f, _screenSize.height * 0.05f));
 	_share->setVisible(true);
@@ -145,7 +155,10 @@ void GameLayer::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
 			if (touch) {
 				tap = touch->getLocation();
 				if (_leaderboards->boundingBox().containsPoint(tap)) {
-					gameServicesSignIn();
+					gameServicesShowRecord();
+				}
+				if (_achievements->boundingBox().containsPoint(tap)) {
+					gameServicesShowMedals();
 				}
 				if (_share->boundingBox().containsPoint(tap)) {
 					share();
@@ -205,6 +218,7 @@ void GameLayer::statusChange(int newStatus) {
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(SOUND_FLYING, true);
 		blinkTapsIni();
 		_leaderboards->setVisible(false);
+		_achievements->setVisible(false);
 		_share->setVisible(false);
 		break;
 	case STATUS_DIED:
@@ -213,6 +227,7 @@ void GameLayer::statusChange(int newStatus) {
 		_labelRecord->setString(szName);
 		_gameManager->setShowParallax(false);
 		_leaderboards->setVisible(false);
+		_achievements->setVisible(false);
 		_share->setVisible(false);
 		showInterstitial();
 		break;
@@ -221,11 +236,13 @@ void GameLayer::statusChange(int newStatus) {
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_BOOM);
 		_gameManager->setShowParallax(false);
 		_leaderboards->setVisible(false);
+		_achievements->setVisible(false);
 		_share->setVisible(false);
 		blinkTapsEnd(_strongLeft);
 		blinkTapsEnd(_strongRight);
 		blinkTapsEnd(_weakLeft);
 		blinkTapsEnd(_weakRight);
+		gameServicesPostRecord();
 		break;
 	case STATUS_WAIT:
 		CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
@@ -234,6 +251,7 @@ void GameLayer::statusChange(int newStatus) {
 		_bg1->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 0.5f));
 		_bg2->setPosition(ccp(_screenSize.width * 0.5f, _screenSize.height * 1.5f));
 		_leaderboards->setVisible(true);
+		_achievements->setVisible(true);
 		_share->setVisible(true);
 		break;
 		default:
@@ -294,16 +312,31 @@ void GameLayer::showInterstitial() {
 	}
 }
 
-void GameLayer::gameServicesSignIn(){
+void GameLayer::gameServicesPostRecord(){
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
 	JniMethodInfo t;
-	if (JniHelper::getStaticMethodInfo(t, "br/com/mypackage/gorocket/GoRocket",	"gameServicesSignIn", "(I)V")) {
+	if (JniHelper::getStaticMethodInfo(t, "br/com/mypackage/gorocket/GoRocket",	"gameServicesPostRecord", "(I)V")) {
 		int altitude = RecordsManager::getPoints();
 		t.env->CallStaticVoidMethod(t.classID, t.methodID, altitude);
 		return;
 	}
 }
-
+void GameLayer::gameServicesShowRecord(){
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t, "br/com/mypackage/gorocket/GoRocket",	"gameServicesShowRecord", "()V")) {
+		t.env->CallStaticVoidMethod(t.classID, t.methodID);
+		return;
+	}
+}
+void GameLayer::gameServicesShowMedals(){
+	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
+	JniMethodInfo t;
+	if (JniHelper::getStaticMethodInfo(t, "br/com/mypackage/gorocket/GoRocket",	"gameServicesShowMedals", "()V")) {
+		t.env->CallStaticVoidMethod(t.classID, t.methodID);
+		return;
+	}
+}
 void GameLayer::share() {
 	CocosDenshion::SimpleAudioEngine::sharedEngine()->playEffect(SOUND_CLICK);
 	JniMethodInfo t;

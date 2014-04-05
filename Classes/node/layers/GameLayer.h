@@ -31,7 +31,9 @@ public:
 	void ccTouchesEnded(CCSet* pTouches, CCEvent* event);
 	void update(float dt);
 	void statusChange(int newStatus);
-	void gameServicesSignIn();
+	void gameServicesPostRecord();
+	void gameServicesShowRecord();
+	void gameServicesShowMedals();
 	//Exit
     void keyBackClicked();
 
@@ -46,6 +48,7 @@ private:
     SpriteContract * _strongLeft;
     SpriteContract * _strongRight;
     SpriteContract * _leaderboards;
+    SpriteContract * _achievements;
     SpriteContract * _share;
 
     GameManager * _gameManager;

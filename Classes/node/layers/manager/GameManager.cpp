@@ -56,14 +56,14 @@ void GameManager::ccTouchesBegan(CCSet* pTouches, CCEvent* event) {
 			if (touch) {
 				tap = touch->getLocation();
 				//Y
-				float force = tap.y * _forceTap / (PIXELS_ROWS * 0.7);
+				float force = tap.y * _forceTap / (PIXELS_ROWS * 0.7f);
 				//X
 				if (tap.x > (_layer->getScreenSize().width * 0.50)) {
 					//CCLog("X RIGHT %i: ", tap.x);
-					_rocket->addAngle(force);
+					_rocket->addAngle(force / FACTOR_APPLY);
 				} else if (tap.x < (_layer->getScreenSize().width * 0.50)) {
 					//CCLog("X LEFT %i: ", tap.x);
-					_rocket->addAngle(-force);
+					_rocket->addAngle(-(force / (FACTOR_APPLY) ));
 				}
 			}
 		}
@@ -133,7 +133,7 @@ void GameManager::changeToWait() {
 
 void GameManager::update(float dt) {
 	if (_status == STATUS_PLAYING) {
-		_altitude += (_speed - ((_rocket->getRotation() < 0 ? _rocket->getRotation() * -1 : _rocket->getRotation()) * (_speed * 0.8f) / 60.0f));
+		_altitude += (_speed - ((_rocket->getRotation() < 0 ? (_rocket->getRotation() * FACTOR_APPLY) * -1 : (_rocket->getRotation() * FACTOR_APPLY)) * (_speed * 0.8f) / 60.0f));
 		if (_altitude < 0) {
 			_altitude = 0;
 		}
@@ -143,20 +143,20 @@ void GameManager::update(float dt) {
 			_speed = SPEED_MAX;
 		}
 		float randValue = rand((int) (_factor * 100));
-		if (_rocket->getRotation() < MIN_ANGLE || _rocket->getRotation() > MAX_ANGLE) {
+		if ((_rocket->getRotation() * FACTOR_APPLY) < MIN_ANGLE || (_rocket->getRotation() * FACTOR_APPLY) > MAX_ANGLE) {
 			RecordsManager::informAltitude(_altitude);
 			_timeWaitDie = _rocket->die();
 			_status = STATUS_WAIT_DIE;
 			_layer->statusChange(STATUS_WAIT_DIE);
 		} else if (_rocket->getRotation() > 0) {
-			_rocket->addAngle(randValue);
+			_rocket->addAngle(randValue / FACTOR_APPLY);
 		} else if (_rocket->getRotation() < 0) {
-			_rocket->addAngle(-(randValue));
+			_rocket->addAngle(-(randValue / FACTOR_APPLY));
 		} else {
 			if ((int) randValue % 2 == 0) {
-				_rocket->addAngle(randValue);
+				_rocket->addAngle(randValue / FACTOR_APPLY);
 			} else {
-				_rocket->addAngle(-randValue);
+				_rocket->addAngle(-randValue / FACTOR_APPLY);
 			}
 		}
 
@@ -174,7 +174,7 @@ void GameManager::update(float dt) {
 		}
 
 		_rocket->update(dt);
-		_meter->setNeedleAngle(_rocket->getRotation());
+		_meter->setNeedleAngle(_rocket->getRotation() * FACTOR_APPLY);
 	} else if (_status == STATUS_WAIT_DIE) {
 		_timeWaitDie -= dt;
 		if (_timeWaitDie <= 0) {

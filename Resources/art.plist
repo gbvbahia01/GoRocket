@@ -563,6 +563,19 @@
                 <key>sourceSize</key>
                 <string>{256,256}</string>
             </dict>
+            <key>trophy.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1262,896},{124,110}}</string>
+                <key>offset</key>
+                <string>{-1,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,12},{124,110}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
             <key>uranus.png</key>
             <dict>
                 <key>frame</key>
@@ -664,7 +677,7 @@
             <key>size</key>
             <string>{2048,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:66e49aba0114ab27628e40433ecaa38b:12931ffe95d42655b17219db83f3d7be:ce74f62e8f18832799afe8f099e7b8c5$</string>
+            <string>$TexturePacker:SmartUpdate:662d974ae2ac79d01bf5b82685d313a0:1d46898b8f970dae3fb523343f2ffee8:ce74f62e8f18832799afe8f099e7b8c5$</string>
             <key>textureFileName</key>
             <string>art.png</string>
         </dict>

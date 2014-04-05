@@ -12,6 +12,7 @@
 #define PIXELS_ROWS 1280
 
 //RULES
+#define FACTOR_APPLY 8.0f
 #define MAX_ANGLE 60
 #define MIN_ANGLE -60
 #define TAP_FORCE_START 5.0f

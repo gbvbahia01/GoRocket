@@ -23,7 +23,6 @@ THE SOFTWARE.
 ****************************************************************************/
 package br.com.mypackage.gorocket;
 
-import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import android.accounts.Account;
@@ -41,15 +40,16 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.example.games.basegameutils.GameHelper;
+import com.google.android.gms.games.Games;
 
-public class GoRocket extends Cocos2dxActivity  implements GameHelper.GameHelperListener{
+public class GoRocket extends BaseGameActivity  implements GameHelper.GameHelperListener{
 	private static GoRocket reference;
 	private AdView adView;
 	private InterstitialAd interstitial;
 	private String accountCharged = null;
 	private boolean tablet = false;
-
+	private boolean debug = false;
+	
     protected void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		reference = this;
@@ -77,11 +77,16 @@ public class GoRocket extends Cocos2dxActivity  implements GameHelper.GameHelper
 	    }else{
 	    	Log.i("EMAIL", "MY_EMAIL HI GBVBAHIA!!!!!!");
 	    }
-	    
-	    
 	}
 
-    public Cocos2dxGLSurfaceView onCreateView() {
+    @Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		 beginUserInitiatedSignIn();
+		 carregarEmail();
+	}
+
+	public Cocos2dxGLSurfaceView onCreateView() {
     	Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
     	// GoRocket should create stencil buffer
     	glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
@@ -176,12 +181,16 @@ public class GoRocket extends Cocos2dxActivity  implements GameHelper.GameHelper
     @Override
     public void onSignInFailed() {
     	Log.w("GOROCKET_SCORE_SHARE", "Fail to SignIn Failed Google Play Games");
-    	Toast.makeText(this, "Fail to SignIn on Google Play Games", Toast.LENGTH_LONG).show();
+    	//Toast.makeText(this, "Fail to SignIn on Google Play Games", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onSignInSucceeded() {
-    	Log.w("GOROCKET_SCORE_SHARE", "Fail to SignIn Sucess Google Play Games");
+    	if(debug){
+    		Toast.makeText(this, "Success to SignIn Google Play Games", Toast.LENGTH_LONG).show();
+    		Log.w("GOROCKET_SCORE_SHARE", "Success to SignIn Google Play Games");
+    	}
+    	Log.w("GOROCKET_SCORE_SHARE", "Success to SignIn Google Play Games");
     }
     
   //static SHARE API
@@ -216,14 +225,50 @@ public class GoRocket extends Cocos2dxActivity  implements GameHelper.GameHelper
 	}
   	
   	//PLAY GOOGLE
-	public static void gameServicesSignIn(int altitude) {
-		Log.i("PLAY LOGIN","SIGN IN");
-		if(reference != null){
-			reference.carregarEmail();
-			Intent ii = new Intent(reference, GoogleMoreActivity.class);
-			ii.putExtra("altitude", altitude);
-			ii.putExtra("email", reference.accountCharged);
-			reference.startActivity(ii);
+	private static int THOUSAND_FEET = 1000;
+	private static int FIVE_THOUSAND_FEET = 5000;
+	private static int TEN_THOUSAND_FEET = 10000;
+	private static int TWENTY_THOUSAND_FEET = 20000;
+	private static int THIRTY_THOUSAND_FEET = 30000;
+	
+	public static void gameServicesPostRecord(int altitude) {
+		Log.i("PLAY GOOGLE", "Public Record");
+		if (reference != null && reference.mHelper.isSignedIn()) {
+			int factor = 1;
+			if(reference.getString(R.string.my_email).equals(reference.accountCharged)){
+				factor = 10;
+			}
+			Games.Leaderboards.submitScore(reference.getApiClient(), reference.getString(R.string.leaderboard), (int)(altitude / factor));
+			if(altitude >= THOUSAND_FEET){
+				Games.Achievements.unlock(reference.getApiClient(), reference.getString(R.string.achievement_1));
+			}
+			if(altitude >= FIVE_THOUSAND_FEET){
+				Games.Achievements.unlock(reference.getApiClient(), reference.getString(R.string.achievement_2));
+			}
+			if(altitude >= TEN_THOUSAND_FEET){
+				Games.Achievements.unlock(reference.getApiClient(), reference.getString(R.string.achievement_3));
+			}
+			if(altitude >= TWENTY_THOUSAND_FEET){
+				Games.Achievements.unlock(reference.getApiClient(), reference.getString(R.string.achievement_4));
+			}
+			if(altitude >= THIRTY_THOUSAND_FEET){
+				Games.Achievements.unlock(reference.getApiClient(), reference.getString(R.string.achievement_5));
+			}
+		}
+	}
+	
+	public static void gameServicesShowRecord() {
+		Log.i("PLAY GOOGLE", "Show Record");
+		if (reference != null && reference.mHelper.isSignedIn()) {
+			reference.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(reference.getApiClient(),
+									reference.getString(R.string.leaderboard)), 123);// 123 can by any number
+		}
+	}
+	
+	public static void gameServicesShowMedals() {
+		Log.i("PLAY GOOGLE", "Medals");
+		if (reference != null && reference.mHelper.isSignedIn()) {
+			reference.startActivityForResult(Games.Achievements.getAchievementsIntent(reference.getApiClient()), 123);// 123 can by any number
 		}
 	}
 }
