@@ -1,11 +1,7 @@
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
 
-#include "CCApplication.h"
 #include "cocos2d.h"
-#include "GameConfig.h"
-#include "node/layers/GameLayer.h"
-#include "SimpleAudioEngine.h"
 
 /**
 @brief    The cocos2d Application.
