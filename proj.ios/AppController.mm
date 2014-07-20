@@ -1,7 +1,7 @@
 #import "AppController.h"
 #import "EAGLView.h"
 #import "cocos2d.h"
-#import "AppDelegate.h"
+#import "../Classes/AppDelegate.h"
 #import "RootViewController.h"
 
 @implementation AppController
