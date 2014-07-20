@@ -46,10 +46,10 @@
 #define RED_DARCK_COLOR_3B ccRED
 #define ORANGE_COLOR_3B ccORANGE
 //Sound
-#define SOUND_CLICK "click.ogg"
-#define SOUND_BOOM "boom.ogg"
-#define SOUND_WIND "wind.ogg"
-#define SOUND_FLYING "flying.ogg"
+#define SOUND_CLICK "click.wav"
+#define SOUND_BOOM "boom.wav"
+#define SOUND_WIND "wind.wav"
+#define SOUND_FLYING "flying.wav"
 #define SOUND_VOLUME 0.5f
 #define SOUND_MUTE 0.0
 
