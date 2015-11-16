@@ -1,8 +1,8 @@
 GoRocket
 ========
 
-Jogo criado com Cocos2dx.  
-Game made with Cocos2dx.  
+Jogo criado com Cocos2d-x.  
+Game made with Cocos2d-x.  
 
 Você pode baixar o jogo aqui:  
 You can download the game here:  
